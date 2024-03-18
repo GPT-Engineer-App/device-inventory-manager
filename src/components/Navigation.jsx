@@ -1,4 +1,4 @@
-import { Box, Flex, Spacer, Button } from "@chakra-ui/react";
+import { Box, Flex, Spacer, Button, useColorModeValue } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 
 const Navigation = () => {
