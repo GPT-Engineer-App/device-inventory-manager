@@ -1,5 +1,6 @@
-import { Box, Flex, Spacer, Button, useColorModeValue } from "@chakra-ui/react";
+import { Box, Flex, Spacer, Button } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
+import ColorModeSwitch from "./ColorModeSwitch";
 
 const Navigation = () => {
   return (
@@ -16,8 +17,11 @@ const Navigation = () => {
             </Button>
           </Link>
           <Link to="/register">
-            <Button colorScheme="green">Register</Button>
+            <Button colorScheme="green" mr={4}>
+              Register
+            </Button>
           </Link>
+          <ColorModeSwitch />
         </Box>
       </Flex>
     </Box>
