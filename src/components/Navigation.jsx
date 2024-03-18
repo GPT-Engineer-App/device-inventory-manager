@@ -13,14 +13,13 @@ const Navigation = () => {
         <Spacer />
         <Box>
           <Link to="/login">
-            <Button colorScheme="blue" mr={4}>
+            <Button colorScheme={colorMode === "light" ? "blue" : "gray"} mr={4}>
               Login
             </Button>
           </Link>
           <Link to="/register">
-            <Button colorScheme="green">Register</Button>
+            <Button colorScheme={colorMode === "light" ? "green" : "gray"}>Register</Button>
           </Link>
-          <Spacer />
           <ColorModeSwitch />
         </Box>
       </Flex>

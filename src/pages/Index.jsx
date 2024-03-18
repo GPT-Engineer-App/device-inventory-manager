@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Box, Heading, Text, Button, Input, Select, Table, Thead, Tbody, Tr, Th, Td, useDisclosure, Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton, FormControl, FormLabel } from "@chakra-ui/react";
 import { FaPlus, FaEdit, FaTrash } from "react-icons/fa";
 
-const Index = () => {
+const Index = ({ colorMode }) => {
   const [devices, setDevices] = useState([]);
   const [deviceType, setDeviceType] = useState("");
   const [name, setName] = useState("");
@@ -94,7 +94,7 @@ const Index = () => {
       <Heading as="h1" mb={4}>
         Inventory Management System
       </Heading>
-      <Button leftIcon={<FaPlus />} colorScheme="blue" onClick={onOpen}>
+      <Button leftIcon={<FaPlus />} colorScheme={colorMode === "light" ? "blue" : "gray"} onClick={onOpen}>
         Add Device
       </Button>
 
