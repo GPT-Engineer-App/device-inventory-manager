@@ -8,13 +8,7 @@ const Login = () => {
   const navigate = useNavigate();
 
   const handleLogin = () => {
-    console.log("Login attempt");
-
-    if (!email || !password) {
-      alert("Please provide both email and password.");
-      return;
-    }
-
+    console.log("Login:", email, password);
     navigate("/");
   };
 
