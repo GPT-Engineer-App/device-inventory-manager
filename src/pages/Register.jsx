@@ -8,8 +8,23 @@ const Register = () => {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  const handleRegister = () => {
-    console.log("Register:", name, email, password);
+  const handleRegister = (e) => {
+    e.preventDefault();
+
+    const emailRegex = /\S+@\S+\.\S+/;
+    if (!emailRegex.test(email)) {
+      alert("Please enter a valid email address.");
+      return;
+    }
+    if (password.length < 6) {
+      alert("Password must be at least 6 characters long.");
+      return;
+    }
+    if (name.length < 1) {
+      alert("Please enter your name.");
+      return;
+    }
+
     navigate("/login");
   };
 
@@ -18,21 +33,25 @@ const Register = () => {
       <Heading as="h1" mb={4}>
         Register
       </Heading>
-      <FormControl mb={4}>
-        <FormLabel>Name</FormLabel>
-        <Input value={name} onChange={(e) => setName(e.target.value)} />
-      </FormControl>
-      <FormControl mb={4}>
-        <FormLabel>Email</FormLabel>
-        <Input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
-      </FormControl>
-      <FormControl mb={4}>
-        <FormLabel>Password</FormLabel>
-        <Input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-      </FormControl>
-      <Button colorScheme="blue" onClick={handleRegister}>
-        Register
-      </Button>
+      <form onSubmit={handleRegister}>
+        <FormControl mb={4}>
+          <FormLabel>Name</FormLabel>
+          <Input value={name} onChange={(e) => setName(e.target.value)} required />
+        </FormControl>
+        <FormControl mb={4}>
+          <FormLabel>Email</FormLabel>
+          <Input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+        </FormControl>
+        <FormControl mb={4}>
+          <FormLabel>Password</FormLabel>
+          <Input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
+        </FormControl>
+        {}
+        <input type="hidden" name="csrfToken" value="CSRF_TOKEN_HERE" />
+        <Button type="submit" colorScheme="blue">
+          Register
+        </Button>
+      </form>
     </Box>
   );
 };

@@ -7,8 +7,19 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  const handleLogin = () => {
-    console.log("Login:", email, password);
+  const handleLogin = (e) => {
+    e.preventDefault();
+
+    const emailRegex = /\S+@\S+\.\S+/;
+    if (!emailRegex.test(email)) {
+      alert("Please enter a valid email address.");
+      return;
+    }
+    if (password.length < 6) {
+      alert("Password must be at least 6 characters long.");
+      return;
+    }
+
     navigate("/");
   };
 
@@ -17,17 +28,21 @@ const Login = () => {
       <Heading as="h1" mb={4}>
         Login
       </Heading>
-      <FormControl mb={4}>
-        <FormLabel>Email</FormLabel>
-        <Input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
-      </FormControl>
-      <FormControl mb={4}>
-        <FormLabel>Password</FormLabel>
-        <Input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-      </FormControl>
-      <Button colorScheme="blue" onClick={handleLogin}>
-        Login
-      </Button>
+      <form onSubmit={handleLogin}>
+        <FormControl mb={4}>
+          <FormLabel>Email</FormLabel>
+          <Input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+        </FormControl>
+        <FormControl mb={4}>
+          <FormLabel>Password</FormLabel>
+          <Input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
+        </FormControl>
+        {}
+        <input type="hidden" name="csrfToken" value="CSRF_TOKEN_HERE" />
+        <Button type="submit" colorScheme="blue">
+          Login
+        </Button>
+      </form>
     </Box>
   );
 };
