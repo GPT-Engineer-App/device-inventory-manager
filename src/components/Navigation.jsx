@@ -18,10 +18,9 @@ const Navigation = () => {
             </Button>
           </Link>
           <Link to="/register">
-            <Button colorScheme="green" mr={4}>
-              Register
-            </Button>
+            <Button colorScheme="green">Register</Button>
           </Link>
+          <Spacer />
           <ColorModeSwitch />
         </Box>
       </Flex>
