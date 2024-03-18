@@ -9,7 +9,15 @@ const Register = () => {
   const navigate = useNavigate();
 
   const handleRegister = () => {
-    console.log("Register:", name, email, password);
+    console.log("Registration attempt");
+
+    if (!name || !email || !password) {
+      alert("Please provide name, email, and password.");
+      return;
+    }
+
+    const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
+
     navigate("/login");
   };
 
@@ -30,6 +38,7 @@ const Register = () => {
         <FormLabel>Password</FormLabel>
         <Input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
       </FormControl>
+      <input type="hidden" name="_csrf" value={csrfToken} />
       <Button colorScheme="blue" onClick={handleRegister}>
         Register
       </Button>
