@@ -27,6 +27,8 @@ const Index = () => {
       phoneNumber,
       status,
       assignedTo,
+      createdAt: new Date(),
+      updatedAt: new Date(),
     };
 
     console.log("Add device to database:", newDevice);
@@ -59,6 +61,7 @@ const Index = () => {
       phoneNumber,
       status,
       assignedTo,
+      updatedAt: new Date(),
     };
 
     console.log("Update device in database:", updatedDevice);
@@ -106,6 +109,8 @@ const Index = () => {
             <Th>Phone Number</Th>
             <Th>Status</Th>
             <Th>Assigned To</Th>
+            <Th>Created At</Th>
+            <Th>Updated At</Th>
             <Th>Actions</Th>
           </Tr>
         </Thead>
@@ -120,6 +125,8 @@ const Index = () => {
               <Td>{device.phoneNumber}</Td>
               <Td>{device.status}</Td>
               <Td>{device.assignedTo}</Td>
+              <Td>{device.createdAt.toLocaleString()}</Td>
+              <Td>{device.updatedAt.toLocaleString()}</Td>
               <Td>
                 <Button size="sm" colorScheme="blue" leftIcon={<FaEdit />} mr={2} onClick={() => handleEditDevice(device)}>
                   Edit
