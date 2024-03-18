@@ -16,7 +16,7 @@ const Index = () => {
 
   const { isOpen, onOpen, onClose } = useDisclosure();
 
-  const handleAddDevice = async () => {
+  const handleAddDevice = () => {
     const newDevice = {
       id: Date.now(),
       deviceType,
@@ -28,8 +28,6 @@ const Index = () => {
       status,
       assignedTo,
     };
-
-    console.log("Add device to database:", newDevice);
     setDevices([...devices, newDevice]);
     resetForm();
     onClose();
@@ -48,28 +46,28 @@ const Index = () => {
     onOpen();
   };
 
-  const handleUpdateDevice = async () => {
-    const updatedDevice = {
-      ...editingDevice,
-      deviceType,
-      name,
-      brand,
-      quantity: parseInt(quantity),
-      serialNumber,
-      phoneNumber,
-      status,
-      assignedTo,
-    };
-
-    console.log("Update device in database:", updatedDevice);
-    const updatedDevices = devices.map((device) => (device.id === editingDevice.id ? updatedDevice : device));
+  const handleUpdateDevice = () => {
+    const updatedDevices = devices.map((device) =>
+      device.id === editingDevice.id
+        ? {
+            ...device,
+            deviceType,
+            name,
+            brand,
+            quantity: parseInt(quantity),
+            serialNumber,
+            phoneNumber,
+            status,
+            assignedTo,
+          }
+        : device,
+    );
     setDevices(updatedDevices);
     resetForm();
     onClose();
   };
 
-  const handleDeleteDevice = async (id) => {
-    console.log("Delete device from database with id:", id);
+  const handleDeleteDevice = (id) => {
     const updatedDevices = devices.filter((device) => device.id !== id);
     setDevices(updatedDevices);
   };
